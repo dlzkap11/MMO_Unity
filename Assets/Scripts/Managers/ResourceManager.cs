@@ -6,13 +6,14 @@ public class ResourceManager
 {
     public T Load<T>(string path) where T : Object
     {
-        return Resources.Load<T>(path);
+        return Resources.Load<T>(path); //오브젝트불러오기
     }
 
     public GameObject Instantiate(string path, Transform parent = null)
     {
-        GameObject prefab = Load<GameObject>($"prefabs/{path}");
-        if (prefab == null)
+        GameObject prefab = Load<GameObject>($"Prefabs/{path}"); //prefab 찾기
+
+        if (prefab == null)//찾지 못 할 경우
         {
             Debug.Log($"Failed to load prefab : {path}");
             return null;
