@@ -76,6 +76,14 @@ public class PlayerController : MonoBehaviour
         anim.SetFloat("speed", 0);
     }
 
+
+
+    void OnRunEvent(string a)
+    {
+        Debug.Log($"¶Ñ¹÷¶Ñ¹÷ -- {a}");
+    }
+
+
     void Update()
     {
             
