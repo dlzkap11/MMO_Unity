@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
         //UI_Button ui= Managers.UI.ShowPopupUI<UI_Button>();
         //Managers.UI.ClosePopupUI(ui); //크로스 체크
 
-        Managers.UI.ShowSceneUI<UI_Inven>();
+        //Managers.UI.ShowSceneUI<UI_Inven>();
 
     }
 

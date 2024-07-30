@@ -13,10 +13,13 @@ public class Managers : MonoBehaviour
 
     InputManager _input = new InputManager();
     ResourceManager _resource = new ResourceManager();
+    SceneManagerEx _sceneManager = new SceneManagerEx();
     UIManager _ui = new UIManager();
+    
 
     public static InputManager Input { get {  return Instance._input; } }
     public static ResourceManager Resource { get { return Instance._resource; } }
+    public static SceneManagerEx Scene {  get { return Instance._sceneManager; } }
     public static UIManager UI { get { return Instance._ui; } }
 
     // Start is called before the first frame update
