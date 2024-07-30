@@ -26,6 +26,14 @@ public class PlayerController : MonoBehaviour
         Managers.Input.MouseEventAction -= OnMouseClicked;
         Managers.Input.MouseEventAction += OnMouseClicked;
 
+        //Managers.Resource.Instantiate("UI/UI_Button");
+
+        //Temp
+        //UI_Button ui= Managers.UI.ShowPopupUI<UI_Button>();
+        //Managers.UI.ClosePopupUI(ui); //크로스 체크
+
+        Managers.UI.ShowSceneUI<UI_Inven>();
+
     }
 
     // GameObject (player)
