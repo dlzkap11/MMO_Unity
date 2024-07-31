@@ -13,6 +13,13 @@ public class Define
         Game,
     }
 
+    public enum Sound
+    {
+        BGM,
+        Effact,
+        MaxCount,
+    }
+
     public enum MouseEvent
     {
         Press,
