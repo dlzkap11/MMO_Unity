@@ -11,26 +11,13 @@ public class GameScene : BaseScene
     // 2. return -> 내가 원하는 타입으로 가능 (class도 가능)
 
     Coroutine co;
-
-    protected override void Init()
-    {
-        base.Init();
-
-        SceneType = Define.Scene.Game;
-
-        Managers.UI.ShowSceneUI<UI_Inven>();
-
-        co = StartCoroutine("ExplodeAfterSeconds", 4.0f);
-
-        StartCoroutine("CoStopExplode", 2.0f);
-    }
-
+    #region Coroutine
     IEnumerator CoStopExplode(float seconds)
     {
         Debug.Log("Stop Enter");
         yield return new WaitForSeconds(seconds);
         Debug.Log("Stop Execute!");
-        if(co != null)
+        if (co != null)
         {
             StopCoroutine(co);
             co = null;
@@ -44,6 +31,23 @@ public class GameScene : BaseScene
         Debug.Log("Explode Execute!");
         co = null;
     }
+    #endregion
+
+    protected override void Init()
+    {
+        base.Init();
+
+        SceneType = Define.Scene.Game;
+
+        Managers.UI.ShowSceneUI<UI_Inven>();
+
+        co = StartCoroutine("ExplodeAfterSeconds", 4.0f);
+
+        StartCoroutine("CoStopExplode", 2.0f);
+
+        Dictionary<int, Stat> dict = Managers.Data.StatDict;
+    }
+
 
 
     public override void Clear()
