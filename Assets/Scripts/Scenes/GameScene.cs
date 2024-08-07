@@ -45,7 +45,10 @@ public class GameScene : BaseScene
 
         StartCoroutine("CoStopExplode", 2.0f);
 
-        Dictionary<int, Stat> dict = Managers.Data.StatDict;
+        Dictionary<int, Data.Stat> dict = Managers.Data.StatDict;
+
+        gameObject.GetOrAddComponet<CursorController>();
+
     }
 
 
