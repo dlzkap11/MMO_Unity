@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Utill
 {
-    public static T GetOrAddComponet<T>(GameObject go) where T : UnityEngine.Component
+    public static T GetOrAddComponent<T>(GameObject go) where T : UnityEngine.Component
     {
         T componet = go.GetComponent<T>();
         if(componet == null)

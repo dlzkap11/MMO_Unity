@@ -24,7 +24,7 @@ public class UIManager
 
     public void SetCanvas(GameObject go, bool sort = true)
     {
-        Canvas canvas = Utill.GetOrAddComponet<Canvas>(go);
+        Canvas canvas = Utill.GetOrAddComponent<Canvas>(go);
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         canvas.overrideSorting = true; //canvas가 중첩될 때 부모가 어떤 값을 가지든 독립적으로 sort값을 가진다.
 
@@ -38,7 +38,24 @@ public class UIManager
             canvas.sortingOrder = 0;
         }
     }
-    
+    public T MakeWorldSpaceUI<T>(Transform parent = null, string name = null) where T : UI_Base
+    {
+        if (string.IsNullOrEmpty(name))
+            name = typeof(T).Name;
+
+        GameObject go = Managers.Resource.Instantiate($"UI/WorldSpace/{name}");
+
+        if (parent != null)
+            go.transform.SetParent(parent);
+
+        Canvas canvas = go.GetComponent<Canvas>();
+        canvas.renderMode = RenderMode.WorldSpace;
+        canvas.worldCamera = Camera.main;
+
+        return Utill.GetOrAddComponent<T>(go);
+    }
+
+
     public T MakeSubItem<T>(Transform parent = null, string name = null) where T : UI_Base
     {
         if(string.IsNullOrEmpty(name))
@@ -49,7 +66,7 @@ public class UIManager
         if (parent != null)
             go.transform.SetParent(parent);
 
-        return Utill.GetOrAddComponet<T>(go);
+        return Utill.GetOrAddComponent<T>(go);
     }
 
 
@@ -59,7 +76,7 @@ public class UIManager
             name = typeof(T).Name;
 
         GameObject go = Managers.Resource.Instantiate($"UI/Popup/{name}");
-        T popup = Utill.GetOrAddComponet<T>(go);
+        T popup = Utill.GetOrAddComponent<T>(go);
         _popupStack.Push(popup);    
         go.transform.SetParent(Root.transform);
 
@@ -72,7 +89,7 @@ public class UIManager
             name = typeof(T).Name;
 
         GameObject go = Managers.Resource.Instantiate($"UI/Scene/{name}");
-        T sceneUI = Utill.GetOrAddComponet<T>(go);
+        T sceneUI = Utill.GetOrAddComponent<T>(go);
         _sceneUI = sceneUI;
         go.transform.SetParent(Root.transform);
 

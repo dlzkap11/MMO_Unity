@@ -9,13 +9,6 @@ public class UI_Inven : UI_Scene
         GridPannel,
     }
 
-
-    
-    void Start()
-    {
-        Init();
-    }
-
     public override void Init()
     {
         base.Init();
@@ -31,9 +24,9 @@ public class UI_Inven : UI_Scene
         {
             GameObject Item = Managers.UI.MakeSubItem<UI_Inven_Item>(gridPannel.transform).gameObject;
 
-            // item.GetorAddComponet...
+            // item.GetOrAddComponent...
             
-            UI_Inven_Item invenitem = Item.GetOrAddComponet<UI_Inven_Item>();
+            UI_Inven_Item invenitem = Item.GetOrAddComponent<UI_Inven_Item>();
             invenitem.SetInfo($"집행검 {i + 1}번");
         }
     }
