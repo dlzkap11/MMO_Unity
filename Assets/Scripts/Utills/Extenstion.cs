@@ -6,13 +6,19 @@ using UnityEngine.EventSystems;
 
 public static class Extenstion
 {
-    public static T GetOrAddComponet<T>(this GameObject go) where T : UnityEngine.Component
+    public static T GetOrAddComponent<T>(this GameObject go) where T : UnityEngine.Component
     { 
-        return Utill.GetOrAddComponet<T>(go);
+        return Utill.GetOrAddComponent<T>(go);
     }
 
     public static void BindEvent(this GameObject go, Action<PointerEventData> action, Define.UIEvent type = Define.UIEvent.Click)
     {
         UI_Base.BindEvent(go, action, type);
     }
+
+    public static bool IsValid(this GameObject go)
+    {
+        return go != null && go.activeSelf;
+    }
+
 }

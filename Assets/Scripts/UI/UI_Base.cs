@@ -12,6 +12,12 @@ public abstract class UI_Base : MonoBehaviour
 
     public abstract void Init();
 
+    private void Start()
+    {
+        Init();
+    }
+
+
     protected void Bind<T>(Type type) where T : UnityEngine.Object
     {
         string[] names = Enum.GetNames(type);
@@ -43,13 +49,13 @@ public abstract class UI_Base : MonoBehaviour
     protected Text GetText(int idx) { return Get<Text>(idx); }
     protected Button GetButton(int idx) { return Get<Button>(idx); }
     protected Image GetImage(int idx) { return Get<Image>(idx); }
-    protected GameObject GetGameObject(int idx) { return Get<GameObject>(idx);}
+    protected GameObject GetObject(int idx) { return Get<GameObject>(idx);}
 
 
     public static void BindEvent(GameObject go, Action<PointerEventData> action, Define.UIEvent type = Define.UIEvent.Click)
     {
 
-        UI_EventHandler evt = Utill.GetOrAddComponet<UI_EventHandler>(go);
+        UI_EventHandler evt = Utill.GetOrAddComponent<UI_EventHandler>(go);
 
         switch (type)
         {
