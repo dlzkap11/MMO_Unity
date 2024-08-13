@@ -14,7 +14,12 @@ public class MonsterController : BaseController
     [SerializeField]
     float _attackRange = 2;
 
-
+    public void OnEnable()
+    {
+        _stat.Hp = _stat.MaxHp;
+        State =Define.State.Idle;
+        _lockTarget = null;
+    }
     public override void Init()
     {
 
@@ -93,12 +98,11 @@ public class MonsterController : BaseController
         if (_lockTarget != null)
         {
             Stat targetStat = _lockTarget.GetComponent<PlayerStat>();
-            int damage = Mathf.Max(0, _stat.Attack - targetStat.Defense);
-            targetStat.Hp -= damage;
+            targetStat.OnAttackted(_stat);
 
             if (targetStat.Hp <= 0)
             {
-                Managers.Game.Despawn(targetStat.gameObject);
+                //Managers.Game.Despawn(targetStat.gameObject);
             }
             else
             {
